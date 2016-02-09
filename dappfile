@@ -1,0 +1,3 @@
+layout:
+    sol_sources: "contracts"
+    build_dir: "build"
