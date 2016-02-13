@@ -1,3 +1,14 @@
 layout:
-    sol_sources: "contracts"
-    build_dir: "build"
+  sol_sources: contracts
+  build_dir: build
+environments:
+  morden:
+    objects:
+      dapphubdb:
+        class: DappHubDB
+        address: '0x867d5999713fcfc3bed31748b6a8d0d05e747a91'
+  default:
+    objects:
+      dapphubdb:
+        class: DappHubDB
+        address: '0x2e17ff09c5484501e58836cbd51ec8a76b9be8f4'

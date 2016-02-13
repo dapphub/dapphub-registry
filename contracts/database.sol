@@ -11,10 +11,10 @@ contract DappHubDB is DSAuth {
         uint8 latest_major_version;
         uint8 latest_minor_version;
         uint8 latest_patch_version;
-        mapping( mapping( uint8 => mapping( uint8 => mapping( uint8 => bytes ) ) ) _hashes;
+        mapping( uint8 => mapping( uint8 => mapping( uint8 => bytes ) ) ) _hashes;
     }
     mapping( bytes32 => package_descriptor ) _packages;
-
+    
     event PackageUpdate(bytes32 indexed name, uint8 major, uint8 minor, uint8 patch, bytes ipfs);
 
     // This function exists to extract a `bytes` type out of the contract
@@ -51,7 +51,7 @@ contract DappHubDB is DSAuth {
                 throw;
             }
         }
-        package._hashes[major][minor][path] = _hash;
+        package._hashes[major][minor][patch] = _hash;
         package.latest_major_version = major;
         package.latest_minor_version = minor;
         package.latest_patch_version = patch;

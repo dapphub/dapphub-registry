@@ -1,0 +1,3 @@
+[submodule "dapple_packages/dappsys"]
+	path = dapple_packages/dappsys
+	url = git@github.com:nexusdev/dappsys.git
