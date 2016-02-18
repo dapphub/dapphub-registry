@@ -1,4 +1,4 @@
-import 'dappsys/auth/auth.sol';
+import 'dappsys/auth.sol';
 
 // Data store for dapphub registry: name, semver -> ipfs_hash
 // Enforces semantic versioning and has simple-to-verify immutability (append-only).
@@ -14,7 +14,7 @@ contract DappHubDB is DSAuth {
         mapping( uint8 => mapping( uint8 => mapping( uint8 => bytes ) ) ) _hashes;
     }
     mapping( bytes32 => package_descriptor ) _packages;
-    
+
     event PackageUpdate(bytes32 indexed name, uint8 major, uint8 minor, uint8 patch, bytes ipfs);
 
     // This function exists to extract a `bytes` type out of the contract

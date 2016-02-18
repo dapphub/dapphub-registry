@@ -8,4 +8,6 @@ environments:
     objects:
       dapphubdb:
         class: DappHubDB
-        address: '0x867d5999713fcfc3bed31748b6a8d0d05e747a91'
+        address: '0xf97b565b530f80d7893e867e558dc3fe1d163130'
+dependencies:
+  - 'https://github.com/nexusdev/dappsys.git@c602cdd'
