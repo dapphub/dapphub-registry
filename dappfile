@@ -1,3 +1,4 @@
+name: dapphub_registry
 layout:
   sol_sources: contracts
   build_dir: build
