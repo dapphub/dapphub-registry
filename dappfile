@@ -9,3 +9,5 @@ environments:
       dapphubdb:
         class: DappHubDB
         address: '0x867d5999713fcfc3bed31748b6a8d0d05e747a91'
+dependencies:
+  - 'https://github.com/nexusdev/dappsys.git@c602cdd'
