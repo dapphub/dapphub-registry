@@ -3,6 +3,7 @@ layout:
   sol_sources: contracts
   build_dir: build
 environments:
+  default: morden
   morden:
     objects:
       dapphubdb:
