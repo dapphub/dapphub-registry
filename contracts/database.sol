@@ -16,13 +16,9 @@ contract DappHubDB is DSAuth {
     mapping( bytes32 => package_descriptor ) _packages;
 
     event PackageUpdate(bytes32 indexed name, uint8 major, uint8 minor, uint8 patch, bytes ipfs);
-
-    // This function exists to extract a `bytes` type out of the contract
-    // by an off-chain consumer (via `call`, not `sendTransaction`!).
-    // There is no way to return `bytes` types to other contracts at this time.
-    event IPFSHash(bytes _hash);
-    function emitPackageHash(bytes32 name, uint8 major, uint8 minor, uint8 patch) {
-        IPFSHash( _packages[name]._hashes[major][minor][patch] );
+    function getPackageHash(bytes32 name, uint8 major, uint8 minor, uint8 patch)
+          returns (bytes) {
+        return _packages[name]._hashes[major][minor][patch];
     }
 
     function setPackage(bytes32 name, uint8 major, uint8 minor, uint8 patch, bytes _hash)
