@@ -1,4 +1,5 @@
 name: dapphub_registry
+version: 1.0.0
 layout:
   sol_sources: contracts
   build_dir: build
@@ -9,5 +10,10 @@ environments:
       dapphubdb:
         class: DappHubDB
         address: '0xfb77e098b4b59369dad9e55d2f25471c7b57c701'
+  undefined:
+    objects:
+      dapphubdb:
+        class: DappHubDB
+        address: '0x63f5fd2496968762dc5f439dac9ee4a3251ccd8b'
 dependencies:
   dappsys: 1.0.0
