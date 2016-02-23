@@ -21,6 +21,14 @@ contract DappHubDB is DSAuth {
         return _packages[name]._hashes[major][minor][patch];
     }
 
+    function getPackageLatest( bytes32 name )
+        returns (uint8 major, uint8 minor, uint8 patch) {
+      var pkg = _packages[name];
+      major = pkg.latest_major_version;
+      minor = pkg.latest_minor_version;
+      patch = pkg.latest_patch_version;
+    }
+
     function setPackage(bytes32 name, uint8 major, uint8 minor, uint8 patch, bytes _hash)
              auth()
     {
