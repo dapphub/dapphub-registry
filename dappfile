@@ -9,11 +9,6 @@ environments:
     objects:
       dapphubdb:
         class: DappHubDB
-        address: '0xfb77e098b4b59369dad9e55d2f25471c7b57c701'
-  undefined:
-    objects:
-      dapphubdb:
-        class: DappHubDB
-        address: '0x63f5fd2496968762dc5f439dac9ee4a3251ccd8b'
+        address: '0x3ff5fef4816601cf1ad677198b57171cdb3c74e7'
 dependencies:
   dappsys: 1.0.0
