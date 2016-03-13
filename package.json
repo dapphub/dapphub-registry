@@ -1,0 +1,44 @@
+{
+  "name": "dapphub",
+  "version": "0.0.1",
+  "description": "Dapphub.io registry",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nexusdev/dapphub-registry.git"
+  },
+  "keywords": [
+    "dapp",
+    "dapple",
+    "solidity",
+    "ethereum",
+    "blockchain",
+    "package",
+    "manager",
+    "registry"
+  ],
+  "author": "Nikolai Mushegian <nikolai@nexusdev.us>",
+  "contributors": [
+    {
+      "name": "Ryan Casey",
+      "email": "ryan@nexusdev.us"
+    },
+    {
+      "name": "Denis Erfurt",
+      "email": "denis.erfurt@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nexusdev/dapphub-registry/issues"
+  },
+  "homepage": "https://github.com/nexusdev/dapphub-registry#readme",
+  "dependencies": {
+    "ipfs-api": "^2.13.2",
+    "ipfs-js": "0.0.8",
+    "web3": "^0.15.3"
+  }
+}
