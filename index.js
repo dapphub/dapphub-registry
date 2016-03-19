@@ -1,29 +1,27 @@
 "use strict";
 // var web3 = require('web3');
-var ipfsApi = require('ipfs-api');
-var ipfs = require('ipfs-js');
+// var ipfsApi = require('ipfs-api');
+// var ipfs = require('ipfs-js');
 var readYaml = require('read-yaml');
 var fs = require('fs');
-var dappfile = read.sync('dappfile');
-var dapple = require('build/js_module.js');
-
+var dappfile = readYaml.sync(__dirname+'/dappfile');
+var dapphub = require('./build/js_module.js');
 
 // load dappfile
-var DappHubDB = JSON.parse(fs.readFileSync('build/classes.json')).DappHubDB;
+// var DappHubDB = JSON.parse(fs.readFileSync('build/classes.json')).DappHubDB;
 
 // get the registry object
-var registryObject = dappfile.environments.morden.objects.dapphubdb;
+// var registryObject = dappfile.environments.morden.objects.dapphubdb;
 
 // instantiate contract
-var dapphub;
+// var dapphub;
 
 var ipfsApi;
 // TODO - verry dirty code - cleanup on release
 module.exports = {
   init: function ( web3 ) {
-    ipfsApi = _ipfsApi;
-    dapphub = web3.eth.contract( JSON.parse( DappHubDB.interface ) ).at( registryObject.address );
-    return dapphub;
+    dapphub.class(web3);
+    return dapphub.objects.dapphubdb;
   },
   initIpfs: function (ipfsApi) {
     // do something with it
