@@ -24,7 +24,7 @@ contract DappHubDBTest is Test {
 
   function testLatestPkgGetter() {
     db.setPackage("omg",1,0,0,"QmbNePoKULjaTEqS1Mr3ni3ET5aa5D4cJLWVEVruQvG3K3");
-    var (a,b,c) = db.getPackageLatest("omg");
+    var (a,b,c) = db.getLastVersion("omg");
     assertTrue(a==1);
     assertTrue(b==0);
     assertTrue(c==0);

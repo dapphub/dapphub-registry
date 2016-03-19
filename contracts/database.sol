@@ -8,14 +8,20 @@ import 'dappsys/auth.sol';
 contract DappHubDB is DSAuth {
     // name -> major -> minor -> patch -> package_hash
     mapping( bytes32=>mapping( uint8=>mapping( uint8=>mapping( uint8=> bytes )))) _packages;
+    // name -> versions[] -- 0 - major, 1 - minor, 2 - patch
+    mapping( bytes32=>uint8[3]) _last;
 
     event PackageUpdate(bytes32 indexed name, uint8 major, uint8 minor, uint8 patch, bytes ipfs);
 
     function getPackageHash(bytes32 name, uint8 major, uint8 minor, uint8 patch)
              constant
-             returns (bytes) 
+             returns (bytes)
     {
-        return _packages[name]._hashes[major][minor][patch];
+        return _packages[name][major][minor][patch];
+    }
+
+    function getLastVersion(bytes32 name) returns (uint8 major, uint8 minor, uint8 patch) {
+      return (_last[name][0], _last[name][1], _last[name][2]);
     }
 
     function setPackage(bytes32 name, uint8 major, uint8 minor, uint8 patch, bytes _hash)
@@ -23,6 +29,13 @@ contract DappHubDB is DSAuth {
     {
         if( _packages[name][major][minor][patch].length != 0 ) {
             throw;
+        }
+        if( _last[name][0] < major
+          || (_last[name][0] == major && _last[name][1] < minor)
+          || (_last[name][0] == major && ((_last[name][1] == minor) && (_last[name][2] < patch)))) {
+          _last[name][0] = major;
+          _last[name][1] = minor;
+          _last[name][2] = patch;
         }
         _packages[name][major][minor][patch] = _hash;
         PackageUpdate(name, major, minor, patch, _hash );
