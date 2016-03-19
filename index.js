@@ -5,6 +5,8 @@ var ipfs = require('ipfs-js');
 var readYaml = require('read-yaml');
 var fs = require('fs');
 var dappfile = read.sync('dappfile');
+var dapple = require('build/js_module.js');
+
 
 // load dappfile
 var DappHubDB = JSON.parse(fs.readFileSync('build/classes.json')).DappHubDB;
@@ -28,6 +30,6 @@ module.exports = {
   },
   require: function( name, version ) {
     var v = version.split('.');
-    var ipfsHash = dapphub.getPackageHash(name, v[0], v[1], v[2]):
+    var ipfsHash = dapphub.getPackageHash(name, v[0], v[1], v[2]);
   }
 };
