@@ -9,7 +9,7 @@ contract DappHubDB is DSAuth {
     // name -> major -> minor -> patch -> package_hash
     mapping( bytes32=>mapping( uint8=>mapping( uint8=>mapping( uint8=> bytes )))) _packages;
     // name -> versions[] -- 0 - major, 1 - minor, 2 - patch
-    mapping( bytes32=>uint8[3]) _last;
+    mapping( bytes32=>uint8[3] ) _last;
 
     event PackageUpdate(bytes32 indexed name, uint8 major, uint8 minor, uint8 patch, bytes ipfs);
 
