@@ -1,5 +1,5 @@
 import 'dappsys/auth.sol';
-import 'dappsys/data/nullmap';
+import 'dappsys/data/nullmap.sol';
 import 'database.sol'; // dapphubDB - packages
 
 // maybe deriving from DSNullMap is overkill, but it shows of dappsys
