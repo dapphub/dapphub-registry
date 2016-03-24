@@ -1,6 +1,8 @@
 # dapphub-registry
 
-npm abstraction for dapphub.io package manager.
+Dapphub on-chain registry definition and npm abstraction for dapphub.io package manager.
+
+Dapphub is designed as an upgradeable system, which is currently manually curated by Nexus but will be moved to an open name distribution and ownership system without needing to migrate existing data.
 
 ## usage
 
