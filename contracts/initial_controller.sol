@@ -14,73 +14,59 @@ contract DappHubNameOwnerDB is DSAuth
     function getNameOwner(bytes32 name) constant returns (address) {
         return address(get(name));
     }
-    function tryGetNameOwner(bytes32 name) 
+    function tryGetNameOwner(bytes32 name)
              constant
              returns (address owner, bool ok)
     {
         var (_owner, _ok) = tryGet(name);
-        return (address(_owner), ok);
+        return (address(_owner), _ok);
     }
-}
-
-contract DappHubBetaNameOwnerDB is DSNullMap {
-  function setNameOwner(bytes32 name, address owner) {
-    var (_owner, _ok) = tryGet(name);
-    // checks if name prefix is "beta/"
-    bool isBeta = name.length > 5 &&
-      byte(name[0]) == byte(0x62) &&
-      byte(name[1]) == byte(0x65) &&
-      byte(name[2]) == byte(0x74) &&
-      byte(name[3]) == byte(0x61) &&
-      byte(name[4]) == byte(0x2f);
-    if(!_ok && isBeta) {
-      //@log a `bytes32 name` and `bytes32 bytes32(owner)`
-      //@log owner `bytes32 _owner`
-      set(name, bytes32(owner));
-    }
-  }
-  function getNameOwner(bytes32 name) constant returns(address) {
-    return address(get(name));
-  }
-  function tryGetNameOwner(bytes32 name) 
-            constant
-            returns (address owner, bool ok)
-  {
-    var (_owner, _ok) = tryGet(name);
-    return (address(_owner), ok);
-  }
 }
 
 contract DappHubSimpleController is DSAuth {
     DappHubNameOwnerDB _name_db;
-    DappHubBetaNameOwnerDB _beta_name_db;
     DappHubDB _package_db;
     function setNameDB( DappHubNameOwnerDB name_db )
              auth()
     {
         _name_db = name_db;
     }
-    function setBetaNameDB( DappHubBetaNameOwnerDB name_db )
-             auth()
-    {
-        _beta_name_db = name_db;
-    }
     function setPackageDB( DappHubDB package_db )
              auth()
     {
         _package_db = package_db;
     }
+    function transfearDBOwner(address owner)
+             auth()
+    {
+      _name_db.updateAuthority(owner, DSAuthModes.Owner);
+      _package_db.updateAuthority(owner, DSAuthModes.Owner);
+    }
+    // TODO - export this to modifiers
     function setPackage( bytes32 name
                        , uint8 major
                        , uint8 minor
                        , uint8 patch
                        , bytes package_hash )
     {
-        var owner = _name_db.getNameOwner(name);
-        if( msg.sender != owner ) {
+        var (owner, ok) = _name_db.tryGetNameOwner(name);
+        // caller has to be owner
+        if (ok && msg.sender != owner) {
             throw;
         }
+        // if the name is not taken yet, assign it to the sender if he is
+        // the authority or the name has a `beta/` prefix
+        if(!ok && (isAuthorized() || isBeta(name))) {
+          _name_db.setNameOwner(name, msg.sender);
+        } else {
+          throw;
+        }
         _package_db.setPackage(name, major, minor, patch, package_hash);
+    }
+    function setNameOwner (bytes32 name, address new_owner) {
+      var (owner, ok) = _name_db.tryGetNameOwner(name);
+      if (ok || !(isAuthorized() || isBeta(name))) throw;
+        _name_db.setNameOwner(name, new_owner);
     }
     function transferName( bytes32 name, address new_owner ) {
         if( msg.sender != _name_db.getNameOwner(name) ) {
@@ -88,4 +74,14 @@ contract DappHubSimpleController is DSAuth {
         }
         _name_db.setNameOwner(name, new_owner);
     }
+    ///@dev checks if `name` is has a 'beta/' prefix
+    function isBeta(bytes32 name) internal returns(bool) {
+      return name.length > 5 &&
+        byte(name[0]) == byte(0x62) &&
+        byte(name[1]) == byte(0x65) &&
+        byte(name[2]) == byte(0x74) &&
+        byte(name[3]) == byte(0x61) &&
+        byte(name[4]) == byte(0x2f);
+    }
+
 }
