@@ -1,1 +1,1 @@
-{"objects":{"dapphubdb":{"class":"DappHubDB","address":"0x3ff5fef4816601cf1ad677198b57171cdb3c74e7"}}}
+{"confirmationBlocks":0,"registries":["0xb3d1b0bfbdd88053bc13cc9d5ed5f8abb3d39e16"],"objects":{"simplecontroller":{"class":"DappHubSimpleController","address":"0xb3d1b0bfbdd88053bc13cc9d5ed5f8abb3d39e16"}}}

@@ -6,6 +6,7 @@ var readYaml = require('read-yaml');
 var fs = require('fs');
 var dappfile = readYaml.sync(__dirname+'/dappfile');
 var dapphub = require('./build/js_module.js');
+var classes = require('./build/classes.json');
 
 // load dappfile
 // var DappHubDB = JSON.parse(fs.readFileSync('build/classes.json')).DappHubDB;
@@ -29,5 +30,11 @@ module.exports = {
   require: function( name, version ) {
     var v = version.split('.');
     var ipfsHash = dapphub.getPackageHash(name, v[0], v[1], v[2]);
+  },
+  getClasses: function () {
+    return classes;
+  },
+  getDappfile: function() {
+    return dappfile;
   }
 };

@@ -1,14 +1,15 @@
 name: dapphub_registry
-version: 0.1.2
+version: 0.1.5
 layout:
   sol_sources: contracts
   build_dir: build
 environments:
   default: morden
   morden:
+    confirmationBlocks: 0
     objects:
-      dapphubdb:
-        class: DappHubDB
-        address: '0x3ff5fef4816601cf1ad677198b57171cdb3c74e7'
+      simplecontroller:
+        class: DappHubSimpleController
+        address: '0xbb6f9db5f87fd48df747ba8cda538d442633c24f'
 dependencies:
   dappsys: 0.1.2

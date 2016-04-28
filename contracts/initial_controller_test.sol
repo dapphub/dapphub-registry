@@ -86,4 +86,19 @@ contract DappHubSimpleControllerTest is Test, DSAuthModesEnum {
     controller.transferName("foo", address(t1));
     controller.setPackage("foo", 1, 0, 0, "bar");
   }
+
+  function testUserCanIncreaseVersionNumber() {
+    DappHubSimpleController(t1).setPackage("beta/foo", 1, 0, 0, "bar");
+    DappHubSimpleController(t1).setPackage("beta/foo", 1, 0, 1, "baz");
+  }
+
+  function testSetUp() {
+    DappHubSimpleController controller2 = new DappHubSimpleController();
+    controller2.setUp();
+    Tester T3; address t3;
+    T3 = new Tester(); t3 = address(T3);
+    T3._target( controller2 );
+    DappHubSimpleController(t3).setPackage('beta/dapphub_registry', 0, 1, 2, 'QmQPzdfmHRRwvFkL9jJPUQAWz7i5RCn5pKkU2J3rEBBePF');
+  }
+
 }

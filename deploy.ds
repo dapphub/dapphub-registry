@@ -1,3 +1,5 @@
-var dapphubdb = new DappHubDB.gas(1000000)()
+var simplecontroller = new DappHubSimpleController()
 
-export dapphubdb
+simplecontroller.setUp()
+
+export simplecontroller

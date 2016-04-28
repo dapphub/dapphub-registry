@@ -25,7 +25,16 @@ contract DappHubNameOwnerDB is DSAuth
 
 contract DappHubSimpleController is DSAuth {
     DappHubNameOwnerDB _name_db;
-    DappHubDB _package_db;
+    DappHubDB public _package_db;
+
+    function setUp () {
+      _name_db = new DappHubNameOwnerDB();
+      _package_db = new DappHubDB();
+      setNameDB(_name_db);
+      setPackageDB(_package_db);
+      updateAuthority(msg.sender, DSAuthModes.Owner);
+    }
+
     function setNameDB( DappHubNameOwnerDB name_db )
              auth()
     {
@@ -56,10 +65,12 @@ contract DappHubSimpleController is DSAuth {
         }
         // if the name is not taken yet, assign it to the sender if he is
         // the authority or the name has a `beta/` prefix
-        if(!ok && (isAuthorized() || isBeta(name))) {
-          _name_db.setNameOwner(name, msg.sender);
-        } else {
-          throw;
+        if(!ok) {
+          if(isAuthorized() || isBeta(name)) {
+            _name_db.setNameOwner(name, msg.sender);
+          } else {
+            throw;
+          }
         }
         _package_db.setPackage(name, major, minor, patch, package_hash);
     }
