@@ -1,6 +1,6 @@
 {
   "name": "dapphub",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Dapphub.io registry",
   "main": "index.js",
   "scripts": {
