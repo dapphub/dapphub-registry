@@ -1,7 +1,7 @@
 name: dapphub_registry
-version: 0.1.5
+version: 0.1.7
 layout:
-  sol_sources: contracts
+  sol_sources: src
   build_dir: build
 environments:
   default: morden
@@ -13,3 +13,4 @@ environments:
         address: '0xbb6f9db5f87fd48df747ba8cda538d442633c24f'
 dependencies:
   dappsys: 0.1.2
+  dapphub_registry: 0.1.7

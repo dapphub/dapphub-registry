@@ -1,5 +1,0 @@
-var simplecontroller = new DappHubSimpleController()
-
-simplecontroller.setUp()
-
-export simplecontroller
