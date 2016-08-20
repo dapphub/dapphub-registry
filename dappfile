@@ -4,13 +4,26 @@ layout:
   sol_sources: src
   build_dir: build
 environments:
-  default: morden
+  master:
+    ctx: {}
+    type: internal
   morden:
-    confirmationBlocks: 0
-    objects:
+    ctx:
       simplecontroller:
-        class: DappHubSimpleController
-        address: '0xbb6f9db5f87fd48df747ba8cda538d442633c24f'
+        value: '0xc5ab3dabed7820c6612564f768a0d4f682379e0e'
+        type: DappHubSimpleController
+    type: MORDEN
+  omfg:
+    ctx: {}
+    type: internal
+  omfg2:
+    ctx: {}
+    type: internal
+  omfg3:
+    ctx: {}
+    type: internal
+  omg5:
+    ctx: {}
+    type: internal
 dependencies:
   dappsys: 0.1.2
-  dapphub_registry: 0.1.7
