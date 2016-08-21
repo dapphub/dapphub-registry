@@ -5,25 +5,31 @@ layout:
   build_dir: build
 environments:
   master:
-    ctx: {}
+    objects: {}
     type: internal
   morden:
-    ctx:
+    objects:
       simplecontroller:
-        value: '0xc5ab3dabed7820c6612564f768a0d4f682379e0e'
+        value: '0x64c4fd795df4abee314711a548d0cbe8b0259d21'
         type: DappHubSimpleController
+      packagedb:
+        value: '0xe43a2c0c3fc706d64745cfbcf4f52892e06fc4f7'
+        type: DappHubDB
+      dapphubdb:
+        value: '0xe43a2c0c3fc706d64745cfbcf4f52892e06fc4f7'
+        type: DappHubDB
     type: MORDEN
   omfg:
-    ctx: {}
+    objects: {}
     type: internal
   omfg2:
-    ctx: {}
+    objects: {}
     type: internal
   omfg3:
-    ctx: {}
+    objects: {}
     type: internal
   omg5:
-    ctx: {}
+    objects: {}
     type: internal
 dependencies:
   dappsys: 0.1.2

@@ -4,7 +4,6 @@
 // var ipfs = require('ipfs-js');
 var readYaml = require('read-yaml');
 var fs = require('fs');
-var dappfile = readYaml.sync(__dirname+'/Dappfile');
 var dapphub = require('./build/js_module.js');
 var classes = require('./build/classes.json');
 
@@ -35,6 +34,7 @@ module.exports = {
     return classes;
   },
   getDappfile: function() {
+    var dappfile = readYaml.sync(__dirname+'/Dappfile');
     return dappfile;
   }
 };
