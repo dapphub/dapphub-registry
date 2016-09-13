@@ -1,6 +1,6 @@
 {
   "name": "dapphub",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Dapphub.io registry",
   "main": "index.js",
   "scripts": {
@@ -40,6 +40,6 @@
     "ipfs-api": "^2.13.2",
     "ipfs-js": "0.0.8",
     "read-yaml": "^1.0.0",
-    "web3": "^0.15.3"
+    "web3": "git+https://github.com/ethereum/web3.js.git#develop"
   }
 }
