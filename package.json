@@ -37,9 +37,9 @@
   },
   "homepage": "https://github.com/nexusdev/dapphub-registry#readme",
   "dependencies": {
-    "ipfs-api": "^2.13.2",
-    "ipfs-js": "0.0.8",
+    "ipfs-api": "^9.0.0",
+    "ipfs-js": "0.0.11",
     "read-yaml": "^1.0.0",
-    "web3": "^0.15.3"
+    "web3": "^0.16.0"
   }
 }
